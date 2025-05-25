@@ -62,8 +62,8 @@ To run a masked 3D reconstruction on your own scene, you can use the following c
 
 ```bash
 cd ./Reconstruction
-python train.py --data_dir [data_dir] \
--m [output_dir] \
+python train.py --data_dir /home/caoyuanping/workspace/genfusion/Reconstruction/data/newMeetingRoom \
+-m /home/caoyuanping/workspace/genfusion/Reconstruction/output_dir \
 --iterations 7_000 \
 --test_iterations 7_000 \
 --diffusion_ckpt ./diffusion_ckpt/epoch=59-step=34000.ckpt \
@@ -77,7 +77,7 @@ python train.py --data_dir [data_dir] \
 --diffusion_resize_height 512 \
 --diffusion_crop_width 960 \
 --diffusion_crop_height 512 \
---patch_size [crop_width] [crop_height] \ # we recommend to use half of the image resolution
+--patch_size 360 640 \ # we recommend to use half of the image resolution
 --opacity_reset_interval 9000 \
 --lambda_dist 0.0 \
 --lambda_reg 0.5 \
