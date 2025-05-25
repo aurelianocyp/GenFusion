@@ -84,6 +84,8 @@ python train.py --data_dir /home/caoyuanping/workspace/genfusion/Reconstruction/
 --lambda_dssim 0.8 \
 --densify_from_iter 1000 \
 --unconditional_guidance_scale 3.2 \
+--ip 0.0.0.0 \
+--port 7861 \
 --repair
 ```
 
