@@ -1,12 +1,3 @@
-# GenFusion: Closing the Loop between Reconstruction and Generation via Videos
-
-[Project page](https://genfusion.sibowu.com) | [Paper](https://arxiv.org/abs/2503.21219) | [Data](https://huggingface.co/datasets/Inception3D/GenFusion_Training_Data) <br>
-
-![Teaser image](assets/pipeline.png)
-
-This repo contains the official implementation for the paper "**GenFusion: Closing the loop between Reconstruction and Generation via Videos**". 
-
-
 ## Installation
 
 ```bash
@@ -16,7 +7,7 @@ cd Reconstruction
 CC=gcc-9 CXX=g++-9 pip install submodules/simple-knn
 CC=gcc-9 CXX=g++-9 pip install submodules/diff-surfel-rasterization
 ```
-## Generation Model Training
+## Generation Model Training可以跳过
 
 The generation model is finetuned from [DynamiCrafter](https://github.com/Doubiiu/DynamiCrafter).
 
@@ -38,9 +29,25 @@ If you want to use the model for generation inference, you can download our pre-
 
 ## Reconstruction
 
+diffusion_ckpt需要放在Reconstruction下
+
 If your skip the generation model training, you can download our pre-trained model from [here](https://huggingface.co/Sibo2rr/GenFusion-GenerationModel) and put it in the `./diffusion_ckpt` folder
 
 ### Masked 3D Reconstruction
+
+data需要放在Reconstruction下，同时把那些以hash命名的文件夹直接放在data下
+
+下载 `https://cdn-lfs.hf-mirror.com/repos/a4/00/a400d3407dcb6ba1378f2783695f545ab7ba55b1b8bbea86f0eb7ab8793c3a98/9a78ef8e8c73fd0df621682e7a8e8eb36c6916cb3c16b291a082ecd52ab79cc4?response-content-disposition=inline%3B+filename*%3DUTF-8%27%27open_clip_pytorch_model.bin%3B+filename%3D%22open_clip_pytorch_model.bin%22%3B&response-content-type=application%2Foctet-stream&Expires=1748188586&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0ODE4ODU4Nn19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy5oZi5jby9yZXBvcy9hNC8wMC9hNDAwZDM0MDdkY2I2YmExMzc4ZjI3ODM2OTVmNTQ1YWI3YmE1NWIxYjhiYmVhODZmMGViN2FiODc5M2MzYTk4LzlhNzhlZjhlOGM3M2ZkMGRmNjIxNjgyZTdhOGU4ZWIzNmM2OTE2Y2IzYzE2YjI5MWEwODJlY2Q1MmFiNzljYzQ%7EcmVzcG9uc2UtY29udGVudC1kaXNwb3NpdGlvbj0qJnJlc3BvbnNlLWNvbnRlbnQtdHlwZT0qIn1dfQ__&Signature=av6SQcQgSVeBJJ1uc5lpYCLmhFsfEEpnqw0MAKgn50zqAZoGntnofF62pwoH228z0XE1MUrN3TdZfiJTFM6l49Edipfk2TjBqSBH0ui5gAJMHiuRldkF3anOXctOix6dwgdTiD3VulUJKhraJM8nXZ8ZaF1BwttepacTn4cLISBDTVO24Jbc3XbhezeHQvcNEWFmTEbRsZKy%7ES-wejzN13RDC77C7VhnrOJ62xus00dKZ2eqtOY0Y-a7ZTbRVA9aWEyWNVKM625VMo0eIosvw1fPbBm2Zkkmy9so%7EEY-yjHqV0YjfdOywal72ll2BowGFMZLtB58D2h8pzblFhB0yg__&Key-Pair-Id=K3RPWS32NSSJCE`放在/home/caoyuanping/.cache/huggingface/hub/models--laion--CLIP-ViT-H-14-laion2B-s32B-b79K/snapshots/1c2b8495b28150b8a4922ee1c8edee224c284c0c下
+
+train.py最前面加：
+```
+import os
+os.environ["HF_ENDPOINT"]= "https://hf-mirror.com"
+```
+
+模型命名为epoch=59-step=34000.ckpt
+
+第一次运行的可能会报错没有output，把相应的注释掉就行或者自己创建一个试一试。
 
 Step 1. The testing scenes in our paper is selected from DL3DV Benchmarkand DL3DV dataset. Download scenes from [Huggingface](https://huggingface.co/datasets/Inception3D/GenFusion_DL3DV_24Benchmark) and put them in the `./data` folder.
 
