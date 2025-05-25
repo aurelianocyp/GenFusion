@@ -62,31 +62,8 @@ To run a masked 3D reconstruction on your own scene, you can use the following c
 
 ```bash
 cd ./Reconstruction
-python train.py --data_dir /home/caoyuanping/workspace/genfusion/Reconstruction/data/newMeetingRoom \
--m /home/caoyuanping/workspace/genfusion/Reconstruction/output_dir \
---iterations 7_000 \
---test_iterations 7_000 \
---diffusion_ckpt ./diffusion_ckpt/epoch=59-step=34000.ckpt \
---diffusion_config ./generation_infer.yaml \
---num_frames 16 \
---outpaint_type crop \
---start_diffusion_iter 3000 \
---sparse_view 0 \
---downsample_factor 2 \
---diffusion_resize_width 960 \
---diffusion_resize_height 512 \
---diffusion_crop_width 960 \
---diffusion_crop_height 512 \
---patch_size 360 640 \ # we recommend to use half of the image resolution
---opacity_reset_interval 9000 \
---lambda_dist 0.0 \
---lambda_reg 0.5 \
---lambda_dssim 0.8 \
---densify_from_iter 1000 \
---unconditional_guidance_scale 3.2 \
---ip 0.0.0.0 \
---port 7861 \
---repair
+python train.py --data_dir /home/caoyuanping/workspace/genfusion/Reconstruction/data/newMeetingRoom -m /home/caoyuanping/workspace/genfusion/Reconstruction/output_dir --iterations 7_000 --test_iterations 7_000 
+--diffusion_ckpt ./diffusion_ckpt/epoch=59-step=34000.ckpt --diffusion_config ./generation_infer.yaml --num_frames 16 --outpaint_type crop --start_diffusion_iter 3000 --sparse_view 0 --downsample_factor 2 --diffusion_resize_width 960 --diffusion_resize_height 512 --diffusion_crop_width 960 --diffusion_crop_height 512 --patch_size 360 640 --opacity_reset_interval 9000 --lambda_dist 0.0 --lambda_reg 0.5 --lambda_dssim 0.8 --densify_from_iter 1000 --unconditional_guidance_scale 3.2 --ip 0.0.0.0 --port 7861 --repair
 ```
 
 ### Sparse view Reconstruction
